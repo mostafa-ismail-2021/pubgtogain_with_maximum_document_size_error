@@ -1,0 +1,219 @@
+<!--<mat-toolbar >
+    <span>ChampionShip Battle Ground</span>
+</mat-toolbar>
+-->
+<!-- Navbar -->
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="height: 50px;z-index: 2;">
+    <div class="container" style="max-width: 90%;">
+  
+      <!-- Brand -->
+        
+        <strong class="navbar-brand">
+          <strong class="navbar-brand" style="font-family: 'Comic Sans MS', cursive ,'Lucida Sans Unicode';">
+            <span style="color: #f26d21;">play </span>
+            <span style="color: #edc944;">to </span>
+            <span style="color: #A3b86c;">gain</span> 
+          </strong>
+          <!--<span class="material-icons" >
+            insert_emoticon rgb(238, 216, 216)   color:rgb(210, 210, 240)
+            </span>-->
+            <mat-icon matSuffix style="vertical-align: middle;color:rgb(213, 213, 228);">sentiment_very_satisfied</mat-icon>
+        </strong>
+
+  
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="maxopacity" mat-stroked-button [routerLink]="['/home']"  style="text-decoration: none;color: rosybrown;width: 100%;text-align: left;">home</a>
+          </li>
+          
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle maxopacity" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" mat-stroked-button style="text-decoration: none;color: rosybrown;width: 100%;text-align: left;"> <span class="nav-label">solo pubg</span> <span class="caret" style="margin-left: 5px;"></span></a>
+            <ul class="dropdown-menu" style="background-color: rgba(0,0,0,.5);">
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/register/solopubg']">Register</a></li>
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/playerdate/solopubg']">Split players</a></li>
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/hacker/solopubg']">Report the hacker</a></li>
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/register/freeadsolopubg']">free ads</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle maxopacity" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" mat-stroked-button style="text-decoration: none;color: rosybrown;width: 100%;text-align: left;"> <span class="nav-label">duo pubg</span> <span class="caret" style="margin-left: 5px;"></span></a>
+            <ul class="dropdown-menu" style="background-color: rgba(0,0,0,.5);">
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/register/duopubgteamleader']">Register as team leader</a></li>
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/register/duopubgmember']">Register as member</a></li>
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/playerdate/duopubg']">Split players</a></li>
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/hacker/duopubg']">Report the hacker</a></li>
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/register/freeadduopubg']">free ads</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle maxopacity" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" mat-stroked-button style="text-decoration: none;color: rosybrown;width: 100%;text-align: left;"> <span class="nav-label">squad pubg</span> <span class="caret" style="margin-left: 5px;"></span></a>
+            <ul class="dropdown-menu" style="background-color: rgba(0, 0, 0, 0.5);">
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/register/Squadpubgteamleader']">Register as team leader</a></li>
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/register/Squadpubgmember']">Register as member</a></li>
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/playerdate/Squadpubg']">Split players</a></li>
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/hacker/Squadpubg']">Report the hacker</a></li>
+              <li><a mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/register/freeadsquadpubg']">free ads</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item active">
+            <a class="maxopacity" mat-stroked-button style="color: rosybrown;text-decoration: none;width: 100%;text-align: left;" [routerLink]="['/register/paidad']">paid Ad</a>
+          </li>
+        </ul>
+  
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a *ngIf="!userIsAutheticated" class="maxopacity" mat-stroked-button href="/loginadmin" color="warn" style="text-decoration: none;width: 100%;text-align: left;">login For Admin</a>
+            <button *ngIf="userIsAutheticated" class="maxopacity" mat-stroked-button (click)="logout()" color="warn" style="width: 100%;text-align: left;">log out</button>
+          </li>
+        </ul>
+        
+      </div>
+  
+    </div>
+  </nav>
+
+  <!-- Navbar -->
+  
+  <!--Carousel Wrapper-->
+  <div style="background-color: rgb(47, 80, 180);height: 50px ;width: 100%;;text-align: center;">
+    
+  </div>
+  <!--
+  <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+  -->
+    <!--Indicators-->
+    
+    <!--/.Indicators-->
+  
+    <!--Slides-->
+    <!--
+    <div style="background-color: rgb(47, 80, 180);">
+    <div class="carousel-inner" role="listbox" style="width: 70%;margin: auto;">
+    -->
+      <!--First slide-->
+      <!--
+      <div class="carousel-item active">
+        <div class="view" style="background-image: url('../../../assets/img/2.jpg'); background-repeat: no-repeat; background-size: 100% 100%;height: 200px;">
+        -->
+          <!-- Mask & flexbox options-->
+          <!--
+          <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+          -->
+            <!-- Content -->
+            <!--
+            <div class="text-center white-text mx-5 wow fadeIn" style="margin-top: 85px;">
+              <h1 class="mb-4">
+                <strong>ChampionShip Bubg and AmongUs</strong>
+              </h1>
+  
+            </div>
+          -->
+            <!-- Content -->
+        <!--
+          </div>
+        -->
+          <!-- Mask & flexbox options-->
+        <!--
+        </div>
+      </div>
+    -->
+      <!--/First slide-->
+  
+      <!--Second slide-->
+      <!--
+      <div class="carousel-item">
+        <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/94.jpg'); background-repeat: no-repeat; background-size: cover;;height: 150px;">
+        -->
+          <!-- Mask & flexbox options-->
+          <!--
+          <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+          -->
+            <!-- Content -->
+            <!--
+            <div class="text-center white-text mx-5 wow fadeIn" style="margin-top: 85px;">
+              <h1 class="mb-4">
+                <strong>ChampionShip Bubg and AmongUs</strong>
+              </h1>
+  
+                           
+            </div>
+          -->
+            <!-- Content -->
+          <!--
+          </div>
+        -->
+          <!-- Mask & flexbox options-->
+        <!--
+        </div>
+      </div>
+    -->
+      <!--/Second slide-->
+  
+      <!--Third slide-->
+      <!--
+      <div class="carousel-item">
+        <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/92.jpg'); background-repeat: no-repeat; background-size: cover;;height: 150px;">
+        -->
+          <!-- Mask & flexbox options-->
+          <!--
+          <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+          -->
+            <!-- Content -->
+            <!---
+            <div class="text-center white-text mx-5 wow fadeIn" style="margin-top: 85px;">
+              <h1 class="mb-4">
+                <strong>ChampionShip Bubg and AmongUs</strong>
+              </h1>
+  
+            </div>
+          -->
+            <!-- Content -->
+          <!--
+          </div>
+        -->
+          <!-- Mask & flexbox options-->
+        <!--
+        </div>
+        
+      </div>
+    -->
+      <!--/Third slide-->
+    <!--
+    </div>
+  </div>
+-->
+    <!--/.Slides-->
+  
+    <!--Controls-->
+    <!--
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev" style="margin-top: 50px;">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next" style="margin-top: 50px;">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  -->
+    <!--/.Controls-->
+  <!--
+  </div>
+-->
+  <!--/.Carousel Wrapper-->
+  
+  <!--/.Footer-->
+  

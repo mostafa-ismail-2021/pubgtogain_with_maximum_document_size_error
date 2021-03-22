@@ -1,0 +1,88 @@
+<img src="../../../assets/img/download.jpg" style="width: 100%;height: 100px;"/>
+
+<div class="spinner-container" *ngIf="spinnerLogIn == true ; else elseBlockContainer">
+    <div>
+        <div class="up-spinner">loading will take a few seconds</div>
+        <div class="spinner">
+            <span class="spinner-ball"></span>
+        </div>
+    </div>
+</div>
+<ng-template #elseBlockContainer>
+    <div class="register">
+        <div class="row" style="width: 100%;">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                <h3>Welcome</h3>
+                <p>This page is used by the admin only</p>
+            </div>
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h2 class="register-heading">login for admin</h2>
+                        <form class="row register-form" #personForm = "ngForm">
+                            <div class="col-md-12">
+                                <h4 style="color: red;text-align: center;">{{detailsToken}}</h4>
+                                <!--<div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="none">
+                                    <mat-label style="color: blue;">Name</mat-label>
+                                    <input matInput
+                                        type="text"
+                                        name="userName"
+                                        ngModel 
+                                        pattern="^[a-zA-Z0-9~!+@ ]+"
+                                        #userName = "ngModel">
+                                    </mat-form-field>
+                                </div>-->
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput 
+                                                required
+                                                email
+                                                type="email" 
+                                                name="Email"
+                                                ngModel 
+                                                pattern="^[a-zA-Z0-9.]+@+[a-zA-Z]+.com$"
+                                                #myEmail = "ngModel"
+                                                maxlength="50">
+                                                <mat-error *ngIf="myEmail.invalid && myEmail.touched && myEmail.value.length != 0">
+                                                    Please enter a valid email address
+                                                </mat-error>
+                                                <mat-error *ngIf="myEmail.invalid && myEmail.touched && myEmail.value.length == 0">
+                                                    Email is <strong>required</strong>
+                                                </mat-error>
+                                    </mat-form-field>                                                    
+                                </div>
+                            
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label >Password</mat-label>
+                                        <input matInput
+                                            required
+                                            type="password"
+                                            name="password"
+                                            ngModel 
+                                            pattern="^[a-zA-Z0-9~!+ ]+$"
+                                            #password = "ngModel"
+                                            maxlength="50">
+                                            <mat-error *ngIf="password.invalid && password.touched && password.value.length != 0">
+                                                Please enter a valid password
+                                            </mat-error>
+                                            <mat-error *ngIf="password.invalid && password.touched && password.value.length == 0">
+                                                password is <strong>required</strong>
+                                            </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <button mat-raised-button color="primary" class="btnRegister" (click) = "login(personForm)" [disabled]="personForm.invalid || clickTimer > 6">log in</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<img src="../../../assets/img/download.jpg" style="width: 100%;height: 100px;"/>
+
+

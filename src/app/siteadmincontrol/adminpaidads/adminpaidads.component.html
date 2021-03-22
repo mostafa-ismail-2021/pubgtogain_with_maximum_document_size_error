@@ -1,0 +1,48 @@
+<h2>paid ads</h2>
+<h3 class="subH2">--add paid ad</h3>
+<form #addPaidAdForm = "ngForm">
+    <label>video id of youtube :  </label>
+    <input type="text" name="videoId" ngModel required
+        pattern="^https://youtu.be/+[a-zA-Z0-9_-]+$"
+        placeholder="Ex. https://youtu.be/test">
+    <br>
+    <label>total views :  </label> <input type="text" name="totalViews" ngModel required
+        pattern="^[0-9]+$" placeholder="take number only"><br>
+    <label>company name :  </label> <input type="text" name="companyName" ngModel required><br>
+    <label>cost by EGP :  </label> <input type="text" name="costByEGP" ngModel required
+        pattern="^[0-9]+$" placeholder="take number only"><br>
+    <label>ad appearance country code like EG not egypt or ALL :  </label>
+    <input type="text" name="adAppearanceCountry" ngModel required
+        pattern="^[A-Z]{2,3}$" placeholder="take two Capital Letters or ALL"
+        style="width: 208;"><br>
+    <button (click)="addPaidAdToServer(addPaidAdForm)" [disabled]="addPaidAdForm.invalid">add paid ad to server</button><br>
+    <p>message : <span>{{messageAddPaidAd}}</span></p>
+</form>
+<hr>
+<h3 class="subH2">--get all paid ads</h3>
+<button (click)="getPaidAds()">get paid ads</button><br>
+<p>number of ads is : <span>{{numberPaidAds}}</span></p>
+<p>note you can see the ads data in console</p>
+<hr style="color: black;">
+<h3 class="subH2">--get paid ads not completed</h3>
+<button (click)="getPaidAdsNot()">get paid ads not completed</button><br>
+<p>number of ads is : <span>{{numberPaidAdsNot}}</span></p>
+<p>note you can see the ads data in console</p>
+<hr style="color: black;">
+<h3 class="subH2">--get paid ads of specific company</h3>
+<form #addPaidAdCompanyForm = "ngForm">
+    <label>company name :  </label> <input type="text" name="companyName" ngModel required><br>
+    <button (click)="getPaidAdsCompany(addPaidAdCompanyForm)" [disabled]="addPaidAdCompanyForm.invalid">get paid ads of company</button><br>
+    <p>number of ads is : <span>{{numberPaidAdsCompany}}</span></p>
+    <p>note you can see the ads data in console</p>
+</form>
+<hr style="color: black;">
+<h3 class="subH2">--delete paid ad depend on _id</h3>
+<form #deletePaidAdForm = "ngForm">
+    <label>id of paid ad :  </label> <input type="text" name="_id" ngModel required><br>
+    <button (click)="deletePaidAd(deletePaidAdForm)" [disabled]="deletePaidAdForm.invalid">delete paid ad</button><br>
+    <p>message : <span>{{messageDeletePaidAds}}</span></p>
+</form>
+<hr style="color: black;">
+
+

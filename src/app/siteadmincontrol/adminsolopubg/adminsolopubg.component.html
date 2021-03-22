@@ -1,0 +1,504 @@
+<h2 class="mainH2">add new championship</h2>
+<form class="subH3" #addChampionForm = "ngForm">
+   <label>start date : </label> <input type="text" name="startDate" ngModel pattern="^\d{1,2}/\d{1,2}/\d{4}$" placeholder="ex:1/1/2020" required ><br>
+   <label>total players number </label> <input type="text" name="totalPlayer" ngModel pattern="^[0-9]+$" placeholder="ex:10000" required><br>
+   <button (click)="addChampion(addChampionForm)" [disabled]="addChampionForm.invalid">add championship</button><br>
+   <p>message : <span>{{messageAddChampion}}</span></p>
+</form>
+<hr>
+<h2 class="mainH2">close championship</h2>
+<form class="subH3" #endChampionForm = "ngForm">
+   <label>end date </label> <input type="text" name="endDate" ngModel pattern="^\d{1,2}/\d{1,2}/\d{4}$" placeholder="ex:1/1/2020" required><br>
+   <button (click)="endChampion(endChampionForm)" [disabled]="endChampionForm.invalid">end championship</button><br>
+   <p>message : <span>{{messageEndChampion}}</span></p>
+</form>
+<hr>
+<h2 class="mainH2">charity ads</h2>
+<h3 class="subH2">--add charity ads</h3>
+<form class="subH3" #addCharityAdForm = "ngForm">
+   <label>youtube video id </label> 
+   <input type="text" name="videoId" ngModel required
+      pattern="^https://youtu.be/+[a-zA-Z0-9_-]+$"
+      placeholder="Ex. https://youtu.be/test"><br>
+   <label>ads country with country code like EG </label> 
+   <input type="text" name="adCountry" ngModel required
+      pattern="^[A-Z]{2,3}$" placeholder="take two Capital Letters or ALL"><br>
+   <button (click)="addCharityAd(addCharityAdForm)" [disabled]="addCharityAdForm.invalid">add charity ad to array</button><br>
+   <button (click)="deleteCharityAd()" [disabled]="charityAds.length == 0 || deleteCharityAdRadio == false">delete charity ad last index in array</button><br>
+   <mat-radio-group aria-label="Select an option" [(ngModel)] = "deleteCharityAdRadio" name="deleteCharityAdRadio">
+      <mat-radio-button [value]="true">open delete charity ad last index in array button</mat-radio-button>
+      <mat-radio-button [value]="false">close delete charity ad last index in array button</mat-radio-button>
+   </mat-radio-group> 
+</form>
+<p class="subH3">lenth of charity ads array : <span>{{charityAds.length}}</span></p><br>
+<button class="subH3" (click)="addCharityAdsToServer()" [disabled]="charityAds.length == 0 || addCharityAdsServerRadio == false">add charity ads to server</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "addCharityAdsServerRadio" name="addCharityAdsServerRadio">
+   <mat-radio-button [value]="true">open add charity ads to server button</mat-radio-button>
+   <mat-radio-button [value]="false">close add charity ads to server button</mat-radio-button>
+</mat-radio-group> 
+<p class="subH3">message : <span>{{messageAddCharityAds}}</span></p>
+<hr>
+<h3 class="subH2">--get charity ads from database</h3>
+<button class="subH3" (click)="getCharityAds()">get charity ads</button><br>
+<p class="subH3">number of ads is : <span>{{numberCharityAds}}</span></p>
+<p class="subH3">note you can see the ads data in console</p>
+<hr style="color: black;">
+<h3 class="subH2">--get charity ads from server when no connect</h3>
+<button class="subH3" (click)="getCharityAdsServer()">get charity ads server</button><br>
+<p class="subH3">number of charity ads is : <span>{{numberCharityAdsServer}}</span></p>
+<p class="subH3">note you can see the charity ads data in console</p>
+<hr style="color: black;">
+<h3 class="subH2">--delete charity ads</h3>
+<button class="subH3" (click)="deleteCharityAds()" [disabled]="deleteCharityAdsRadio == false">delete charity ads</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "deleteCharityAdsRadio" name="deleteCharityAdsRadio">
+   <mat-radio-button [value]="true">open delete charity ads button</mat-radio-button>
+   <mat-radio-button [value]="false">close delete charity ads button</mat-radio-button>
+</mat-radio-group> 
+<p class="subH3">message : <span>{{messageDeleteCharityAds}}</span></p>
+<hr style="color: black;">
+<h3 class="subH2">--get charity ads from database and put in server</h3>
+<button class="subH3" (click)="charityAdsFromDatabaseToServer()" [disabled]="charityAdsFromDatabaseToServerRadio == false">get charity ads from database and put in server</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "charityAdsFromDatabaseToServerRadio" name="charityAdsFromDatabaseToServerRadio">
+   <mat-radio-button [value]="true">open get charity ads from database and put in server button</mat-radio-button>
+   <mat-radio-button [value]="false">close get charity ads from database and put in server button</mat-radio-button>
+</mat-radio-group> 
+<p class="subH3">message : <span>{{messageAddCharityAdsToServer}}</span></p>
+<hr style="color: black;">
+<h2 class="mainH2">paid ads</h2>
+<h3 class="subH2">--add paid ads to solo championship used $set</h3>
+<form class="subH3" #addPaidAdsForm = "ngForm">
+   <label>paid ads _id </label> <input type="text" name="id" ngModel required><br>
+   <button (click)="addOnePaidAd(addPaidAdsForm)" [disabled]="addPaidAdsForm.invalid">add paid ad to array</button><br>
+   <button (click)="deleteOnePaidAd()" [disabled]="paidAds.length == 0 || deletePaidAdRadio == false">delete paid ad last index in array</button><br>
+   <mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "deletePaidAdRadio" name="deletePaidAdRadio">
+      <mat-radio-button [value]="true">open delete paid ad last index in array button</mat-radio-button>
+      <mat-radio-button [value]="false">close delete paid ad last index in array button</mat-radio-button>
+   </mat-radio-group>
+</form>
+<p class="subH3">lenth of paid ads array : <span>{{paidAds.length}}</span></p><br>
+<button class="subH3" (click)="addPaidAdsToServer()" [disabled]="paidAds.length == 0 || addPaidAdsServerRadio == false">add paid ads to server</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "addPaidAdsServerRadio" name="addPaidAdsServerRadio">
+   <mat-radio-button [value]="true">open add paid ads to server button</mat-radio-button>
+   <mat-radio-button [value]="false">close add paid ads to server button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageAddPaidAds}}</span></p>
+<hr>
+<h3 class="subH2">--add one paid ad to solo championship used $push</h3>
+<form class="subH3" #addPaidAdForm = "ngForm">
+   <label>paid ads _id </label> <input type="text" name="id" ngModel required><br>
+   <button (click)="addPaidAdToServer(addPaidAdForm)" [disabled]="addPaidAdForm.invalid">add paid ad to server</button><br>
+   <p>message : <span>{{messageAddPaidAd}}</span></p>
+</form>
+<hr>
+<h3 class="subH2">--get paid ads that not complete from database and added to solo championship</h3>
+<button class="subH3" (click)="getAddPaidAds()" [disabled]="getAddPaidAdsRadio == false">get paid ads and added to server</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "getAddPaidAdsRadio" name="getAddPaidAdsRadio">
+   <mat-radio-button [value]="true">open get paid ads and added to server button</mat-radio-button>
+   <mat-radio-button [value]="false">close get paid ads and added to server button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageGetAddPaidAds}}</span></p>
+<hr style="color: black;">
+<h3 class="subH2">--get paid ads that not complete from database</h3>
+<button class="subH3" (click)="getPaidAds()">get paid ads</button><br>
+<p class="subH3">number of paid ads is : <span>{{numberPaidAdsNotComplete}}</span></p>
+<p class="subH3">note you can see the paid ads data in console</p>
+<hr style="color: black;">
+<h3 class="subH2">--get paid ads added to solo championship from database</h3>
+<button class="subH3" (click)="getSoloPaidAds()">get paid ads</button><br>
+<p class="subH3">number of paid ads is : <span>{{numberPaidAds}}</span></p>
+<p class="subH3">note you can see the paid ads data in console</p>
+<hr style="color: black;">
+<h3 class="subH2">--delete paid ads list</h3>
+<button class="subH3" (click)="deletePaidAds()" [disabled]="deletePaidAdsRadio == false">delete paid ads</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "deletePaidAdsRadio" name="deletePaidAdsRadio">
+   <mat-radio-button [value]="true">open delete paid ads button</mat-radio-button>
+   <mat-radio-button [value]="false">close delete paid ads button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageDeletePaidAds}}</span></p>
+<hr style="color: black;">
+<h3 class="subH2">--delete one paid ad list</h3>
+<form class="subH3" #deletePaidAdForm = "ngForm">
+   <label>paid ads _id to delete it </label> <input type="text" name="id" ngModel required><br>
+   <button (click)="deletePaidAd(deletePaidAdForm)" [disabled]="deletePaidAdForm.invalid">delete one paid ad</button><br>
+   <p>message : <span>{{messageDeletePaidAd}}</span></p>
+</form>
+<hr style="color: black;">
+<h2 class="mainH2">black list</h2>
+<h3 class="subH2">--add black list</h3>
+<form class="subH3" #addBlackListForm = "ngForm">
+   <label>email : </label> <input type="text" name="email" ngModel pattern="^[a-z0-9]+@gmail.com$" placeholder="ex: test@gamil.com" required><br>
+   <label>pubg id :  </label> <input type="text" name="pubgId" ngModel pattern="^[0-9]+$" minlength="7"
+      maxlength="15" placeholder="ex: 7 to 15 number" required><br>
+   <button (click)="addBlackList(addBlackListForm)" [disabled]="addBlackListForm.invalid">add person black list to array</button><br>
+   <button (click)="deleteBlackListArray()" [disabled]="blackList.length == 0">delete person black list last index in array</button><br>
+</form>
+<p class="subH3">lenth of black list array : <span>{{blackList.length}}</span></p><br>
+<button class="subH3" (click)="addBlackListToServer()" [disabled]="blackList.length == 0 || addBlackListToServerRadio == false">add black list to server</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "addBlackListToServerRadio" name="addBlackListToServerRadio">
+   <mat-radio-button [value]="true">open add black list to server button</mat-radio-button>
+   <mat-radio-button [value]="false">close add black list to server button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageAddBlackList}}</span></p>
+<hr>
+<h3 class="subH2">--get black list from database</h3>
+<button class="subH3" (click)="getBlackList()">get black list</button><br>
+<p class="subH3">number of black list is : <span>{{numberBlackList}}</span></p>
+<p class="subH3">note you can see the black list data in console</p>
+<hr style="color: black;">
+<h3 class="subH2">--delete black list</h3>
+<button class="subH3" (click)="deleteBlackList()" [disabled]="deleteBlackListRadio == false">delete black list</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "deleteBlackListRadio" name="deleteBlackListRadio">
+   <mat-radio-button [value]="true">open delete black list button</mat-radio-button>
+   <mat-radio-button [value]="false">close delete black list button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageDeleteBlackList}}</span></p>
+<hr style="color: black;">
+<h2 class="mainH2">open and close pages</h2>
+<button class="subH3" (click) = "getPagesStates()"> get open and close pages</button>
+<p class="subH3">message : <span>{{message}}</span></p>
+<p class="subH3">register championship page is : <span>{{registerChampionshipType}}</span></p>
+<p class="subH3">register free ads page is : <span>{{registerFreeAdsType}}</span></p>
+<p class="subH3">register report hacker page is : <span>{{registerReportHackerType}}</span></p>
+<p class="subH3">appear hacker and winners page is : <span>{{appearHackerAndWinnersPubg}}</span></p>
+<p class="subH3">split players page is : <span>{{splitPlayersType}}</span></p>
+<hr>
+<h2 class="mainH2">open pages</h2>
+<button class="subH3" (click) = "setChampionshipTypeTrue()" [disabled]="setChampionshipTypeTrueRadio == false"> set championship type true</button>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "setChampionshipTypeTrueRadio" name="setChampionshipTypeTrueRadio">
+   <mat-radio-button [value]="true">open set championship type true button</mat-radio-button>
+   <mat-radio-button [value]="false">close set championship type true button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageChampionshipTypeTrue}}</span></p>
+<hr>
+<button class="subH3" (click) = "setFreeAdsTypeTrue()" [disabled]="setFreeAdsTypeTrueRadio == false">set free ads type true</button>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "setFreeAdsTypeTrueRadio" name="setFreeAdsTypeTrueRadio">
+   <mat-radio-button [value]="true">open set free ads type true button</mat-radio-button>
+   <mat-radio-button [value]="false">close set free ads type true button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageFreeAdsTypeTrue}}</span></p>
+<hr>
+<button class="subH3" (click) = "setReportHackerTypeTrue()" [disabled]="setReportHackerTypeTrueRadio == false">set report hacker type true</button>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "setReportHackerTypeTrueRadio" name="setReportHackerTypeTrueRadio">
+   <mat-radio-button [value]="true">open set report hacker type true button</mat-radio-button>
+   <mat-radio-button [value]="false">close set report hacker type true button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageReportHackerTypeTrue}}</span></p>
+<hr>
+<button class="subH3" (click) = "setAppearHackerAndWinnersTrue()" [disabled]="setAppearHackerAndWinnersTrueRadio == false">set appear hacker and winners true</button>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "setAppearHackerAndWinnersTrueRadio" name="setAppearHackerAndWinnersTrueRadio">
+   <mat-radio-button [value]="true">open set appear hacker and winners true button</mat-radio-button>
+   <mat-radio-button [value]="false">close set appear hacker and winners true button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageAppearHackerAndWinnersTrue}}</span></p>
+<hr>
+<button class="subH3" (click) = "setSplitPlayersTypeTrue()" [disabled]="setSplitPlayersTypeTrueRadio == false">set split players type true</button>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "setSplitPlayersTypeTrueRadio" name="setSplitPlayersTypeTrueRadio">
+   <mat-radio-button [value]="true">open set split players type true button</mat-radio-button>
+   <mat-radio-button [value]="false">close set split players type true button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageSplitPlayersTypeTrue}}</span></p>
+<hr>
+<div class="subH3">
+<h2 class="mainH2">close pages</h2>
+<button (click) = "setChampionshipTypeFalse()" [disabled]="setChampionshipTypeFalseRadio == false">set championship type false</button>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "setChampionshipTypeFalseRadio" name="setChampionshipTypeFalseRadio">
+   <mat-radio-button [value]="true">open set championship type false button</mat-radio-button>
+   <mat-radio-button [value]="false">close set championship type false button</mat-radio-button>
+</mat-radio-group>
+<p>message : <span>{{messageChampionshipTypeFalse}}</span></p>
+<hr>
+<button (click) = "setFreeAdsTypeFalse()" [disabled]="setFreeAdsTypeFalseRadio == false">set free ads type false</button>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "setFreeAdsTypeFalseRadio" name="setFreeAdsTypeFalseRadio">
+   <mat-radio-button [value]="true">open set free ads type false button</mat-radio-button>
+   <mat-radio-button [value]="false">close set free ads type false button</mat-radio-button>
+</mat-radio-group>
+<p>message : <span>{{messageFreeAdsTypeFalse}}</span></p>
+<hr>
+<button (click) = "setReportHackerTypeFalse()" [disabled]="setReportHackerTypeFalseRadio == false">set report hacker type false</button>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "setReportHackerTypeFalseRadio" name="setReportHackerTypeFalseRadio">
+   <mat-radio-button [value]="true">open set report hacker type false button</mat-radio-button>
+   <mat-radio-button [value]="false">close set report hacker type false button</mat-radio-button>
+</mat-radio-group>
+<p>message : <span>{{messageReportHackerTypeFalse}}</span></p>
+<hr>
+<button (click) = "setAppearHackerAndWinnersFalse()" [disabled]="setAppearHackerAndWinnersFalseRadio == false">set appear hacker and winners false</button>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "setAppearHackerAndWinnersFalseRadio" name="setAppearHackerAndWinnersFalseRadio">
+   <mat-radio-button [value]="true">open set appear hacker and winners false button</mat-radio-button>
+   <mat-radio-button [value]="false">close set appear hacker and winners false button</mat-radio-button>
+</mat-radio-group>
+<p>message : <span>{{messageAppearHackerAndWinnersFalse}}</span></p>
+<hr>
+<button (click) = "setSplitPlayersTypeFalse()" [disabled]="setSplitPlayersTypeFalseRadio == false">set split players type false</button>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "setSplitPlayersTypeFalseRadio" name="setSplitPlayersTypeFalseRadio">
+   <mat-radio-button [value]="true">open set split players type false button</mat-radio-button>
+   <mat-radio-button [value]="false">close set split players type false button</mat-radio-button>
+</mat-radio-group>
+<p>message : <span>{{messageSplitPlayersTypeFalse}}</span></p>
+</div>
+<hr style="color: black;">
+<h2 class="mainH2">free ads will appear</h2>
+<h3 class="subH2">--get register ads from database</h3>
+<div class="subH3">
+<button (click)="getRegisterAds()">get register ads</button><br>
+<p>number of register ads is : <span>{{numberRegisterFreeAds}}</span></p>
+<p>note you can see the register ads data in console</p>
+</div>
+<hr style="color: black;">
+<h3 class="subH2">--add one free ad to ads will appear use $push</h3>
+<form class="subH3" #addFreeAdForm = "ngForm">
+   <label>register free ad youtube video id </label>
+   <input type="text" name="videoId" ngModel required
+      pattern="^https://youtu.be/+[a-zA-Z0-9_-]+$"
+      placeholder="Ex. https://youtu.be/test"><br>
+   <label>register free ad email </label> <input type="text" name="email" ngModel pattern="^[a-z0-9]+@gmail.com$" placeholder="ex: test@gamil.com" required><br>
+   <label>register free ad ad appearance country </label> 
+   <input type="text" name="adCountry" ngModel required
+      pattern="^[A-Z]{2,3}$" placeholder="take two Capital Letters or ALL"><br>
+   <button (click)="addFreeAdToServer(addFreeAdForm)" [disabled]="addFreeAdForm.invalid">add free ad to server</button><br>
+   <p>message : <span>{{messageAddFreeAd}}</span></p>
+</form>
+<hr>
+<h3 class="subH2">--add ads will appear use $set</h3>
+<div class="subH3">
+<form #freeAds = "ngForm">
+   <label>number of ads will appear: </label> <input type="text" ngModel required name="numberAds" pattern="^[0-9]+$" placeholder="ex: 20"><br>
+   <button (click)="addAdsWillAppear(freeAds)" [disabled]="freeAds.invalid || addAdsWillAppearRadio == false">add ads will appear</button><br>
+   <mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "addAdsWillAppearRadio" name="addAdsWillAppearRadio">
+      <mat-radio-button [value]="true">open add ads will appear button</mat-radio-button>
+      <mat-radio-button [value]="false">close add ads will appear button</mat-radio-button>
+   </mat-radio-group>
+</form>
+<p>message : <span>{{messageAddFreeAds}}</span></p>
+</div>
+<hr>
+<h3 class="subH2">--get ads will appear from database</h3>
+<div class="subH3">
+<button (click)="getRealAdsWillAppear()">get ads will appear</button><br>
+<p>number of ads is : <span>{{numberFreeAdsWillAppear}}</span></p>
+<p>note you can see the ads data in console</p>
+</div>
+<hr style="color: black;">
+<h3 class="subH2">--get ads will appear from server when no connect</h3>
+<div class="subH3">
+<button (click)="getRealAdsWillAppearServer()">get ads will appear server</button><br>
+<p>number of ads is : <span>{{numberFreeAdsWillAppearServer}}</span></p>
+<p>note you can see the ads data in console</p>
+</div>
+<hr style="color: black;">
+<h3 class="subH2">--delete ads will appear</h3>
+<div class="subH3">
+<button (click)="deleteAdsWillAppear()" [disabled]="deleteAdsWillAppearRadio == false">delete ads will appear</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "deleteAdsWillAppearRadio" name="deleteAdsWillAppearRadio">
+   <mat-radio-button [value]="true">open delete ads will appear button</mat-radio-button>
+   <mat-radio-button [value]="false">close delete ads will appear button</mat-radio-button>
+</mat-radio-group>
+<p>message : <span>{{messageDeleteFreeAds}}</span></p>
+</div>
+<hr style="color: black;">
+<h3 class="subH2">--delete one ad will appear</h3>
+<form class="subH3" #deleteFreeAdForm = "ngForm">
+   <label>free ad will appear _id to delete it </label> <input type="text" name="id" ngModel required><br>
+   <button (click)="deleteFreeAd(deleteFreeAdForm)" [disabled]="deleteFreeAdForm.invalid">delete one free ad will appear ad</button><br>
+   <p>message : <span>{{messageDeleteFreeAd}}</span></p>
+</form>
+<hr style="color: black;">
+<h3 class="subH2">--get ads from database and put in server</h3>
+<button class="subH3" (click)="adsFromDatabaseToServer()" [disabled]="adsFromDatabaseToServerRadio == false">get ads from database and put in server</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "adsFromDatabaseToServerRadio" name="adsFromDatabaseToServerRadio">
+   <mat-radio-button [value]="true">open get ads from database and put in server button</mat-radio-button>
+   <mat-radio-button [value]="false">close get ads from database and put in server button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageAddAdsToServer}}</span></p>
+<hr style="color: black;">
+<h2 class="mainH2">split players</h2>
+<h3 class="subH2">--add player manually in database to play in championship</h3>
+<form class="subH3" #addPlayerForm = "ngForm">
+   <label>player pubg id : </label> <input type="text" ngModel pattern="^[0-9]+$" minlength="7"
+      maxlength="15" placeholder="ex: 7 to 15 number" required name="pubgId">
+   <button (click)="addPlayer(addPlayerForm)" [disabled]="addPlayerForm.invalid">add id player</button><br>
+</form>
+<p class="subH3">message : <span>{{messageAddPlayer}}</span></p><br>
+<hr>
+<h3 class="subH2">--delete players manually in database</h3>
+<form class="subH3" #deletePlayerForm = "ngForm">
+   <label>player pubg id : </label> <input type="text" ngModel required pattern="^[0-9]+$" minlength="7"
+      maxlength="15" placeholder="ex: 7 to 15 number" name="pubgId">
+   <button (click)="deletePlayer(deletePlayerForm)" [disabled]="deletePlayerForm.invalid">delete id player</button><br>
+</form>
+<p class="subH3">message : <span>{{messageDeletePlayer}}</span></p><br>
+<hr>
+<h3 class="subH2">--get all players from database and count how days the first round will take</h3>
+<form class="subH3" #getPlayersAndCountDaysForm = "ngForm">
+   <label>number start time of championship</label> <input type="text" ngModel pattern="^[0-9]{1,2}$" placeholder="ex: 15" required name="startTime"><br>
+   <label>number end time of championship </label> <input type="text" ngModel pattern="^[0-9]{1,2}$" placeholder="ex: 20" required name="endTime"><br>
+   <label>what number each group will take of players </label> <input type="text" ngModel pattern="^[0-9]+$" placeholder="ex: 100" required name="playersNumberInGroup"><br>
+   <label>number of group will play in same time </label> <input type="text" ngModel pattern="^[0-9]+$" placeholder="ex: 1" required name="maxSameTimeGroup"><br>
+   <button (click)="getPlayersAndCountDays(getPlayersAndCountDaysForm)" [disabled]="getPlayersAndCountDaysForm.invalid">get all players</button><br>
+</form>
+<p class="subH3">the days will take first round is : <span>{{numberDaysTheFirstRoundTake}}</span></p>
+<p class="subH3">note you can see the playes data in console</p>
+<hr>
+<h3 class="subH2">--add split players auto add</h3>
+<form class="subH3" #splitPlayersAuto = "ngForm">
+   <label>start day number </label> <input type="text" ngModel required pattern="^[0-9]{1,2}$" placeholder="ex: 10" name="dayNumber"><br>
+   <label>start month number </label> <input type="text" ngModel required pattern="^[0-9]{1,2}$" placeholder="ex: 3" name="monthNumber"><br>
+   <label>start year number </label> <input type="text" ngModel required pattern="^[0-9]{4}$" placeholder="ex: 2020" name="yearNumber"><br>
+   <label>number days of month with , between months </label> <input type="text" ngModel pattern="^[0-9,]+$" placeholder="30,31,29" required name="sliceMonths"><br>
+   <label>start time </label> <input type="text" ngModel pattern="^[0-9]{1,2}$" placeholder="ex: 15" required name="startTime"><br>
+   <label>end time </label> <input type="text" ngModel pattern="^[0-9]{1,2}$" placeholder="ex: 20" required name="endTime"><br>
+   <label>number of player in each group max 100 because group pubg max 100 </label> <input type="text" ngModel pattern="^[0-9]+$" placeholder="ex: 100" required name="maxGroup"><br>
+   <label>number of group will play in same time </label> <input type="text" ngModel pattern="^[0-9]+$" placeholder="ex: 1" required name="maxSameTimeGroup"><br>
+   <button (click)="autoSplitPlayers(splitPlayersAuto)" [disabled]="splitPlayersAuto.invalid">add split players</button><br>
+   <!--<label>the first round will take click button day </label> <input type="text" name="dateNumber"><br>
+   <button (click)="autoSplitPlayers(splitPlayersAuto)">number of first round days</button><br>-->
+</form>
+<p class="subH3">message : <span>{{autoAddSplitPlayer}}</span></p>
+<hr style="color: black;">
+<h3 class="subH2">--add split players manual add</h3>
+<form class="subH3" #splitPlayersPubgId = "ngForm">
+   <label>pubg ids in group </label> <input type="text" ngModel required pattern="^[0-9]+$" minlength="7"
+      maxlength="15" placeholder="ex: 7 to 15 number" name="pubgId">
+   <button (click)="addSplitPlayerIdPubg(splitPlayersPubgId)" [disabled]="splitPlayersPubgId.invalid">add id player to group</button><br>
+   <p>lenth of pubg ids in group : <span>{{PubgIdsGroup.length}}</span></p><br>
+   <button (click)="deleteSplitPlayerIdPubg()" [disabled]="deleteSplitPlayerIdPubgRadio == false || PubgIdsGroup.length == 0">delete last id player in array group</button><br>
+   <mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "deleteSplitPlayerIdPubgRadio" name="deleteSplitPlayerIdPubgRadio">
+      <mat-radio-button [value]="true">open delete last id player in group button</mat-radio-button>
+      <mat-radio-button [value]="false">close delete last id player in group button</mat-radio-button>
+   </mat-radio-group>
+</form>
+<form class="subH3" #splitPlayerGroup = "ngForm">
+   <label>group number </label> <input type="text" ngModel required pattern="^[0-9]+$" placeholder="ex: 1" name="groupNumber"><br>
+   <label>date </label> <input type="text" ngModel required pattern="^\d{1,2}/\d{1,2}/\d{4}$" placeholder="ex:1/1/2020" name="date"><br>
+   <label>time </label> <input type="text" ngModel required pattern="^[0-9]{1,2}$" placeholder="ex: 15" name="time"><br>
+   <button (click)="addSplitPlayerGroup(splitPlayerGroup)" [disabled]="splitPlayerGroup.invalid">add group</button><br>
+   <p>lenth of groups : <span>{{GroupsData.length}}</span></p><br>
+   <button (click)="deleteSplitPlayerGroup()" [disabled]="deleteSplitPlayerGroupRadio == false">delete last group in array</button><br>
+   <mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "deleteSplitPlayerGroupRadio" name="deleteSplitPlayerGroupRadio">
+      <mat-radio-button [value]="true">open delete last group in array button</mat-radio-button>
+      <mat-radio-button [value]="false">close delete last group in array button</mat-radio-button>
+   </mat-radio-group>
+</form>
+<form class="subH3" #splitPlayersManual = "ngForm">
+   <label>round </label> <input type="text" ngModel pattern="^[0-9]+$" placeholder="ex: 2" required name="round"><br>
+   <button (click)="manulSplitPlayers(splitPlayersManual)" [disabled]="splitPlayersManual.invalid || manulSplitPlayersRadio == false">add round to server</button>
+   <mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "manulSplitPlayersRadio" name="manulSplitPlayersRadio">
+      <mat-radio-button [value]="true">open add round to server button</mat-radio-button>
+      <mat-radio-button [value]="false">close add round to server button</mat-radio-button>
+   </mat-radio-group>
+</form>
+<p class="subH3">message : <span>{{manualAddSplitPlayer}}</span></p>
+<hr>
+<h3 class="subH2">--get split players from database</h3>
+<button class="subH3" (click)="getSplitPlayer()">get split players</button><br>
+<p class="subH3">number of split players is : <span>{{numberSplitPlayer}}</span></p>
+<p class="subH3">note you can see the  split players data in console</p>
+<hr style="color: black">
+<h3 class="subH2">--get split players from server when no connect</h3>
+<button class="subH3" (click)="getSplitPlayerNoConnect()">get split players from server</button><br>
+<p class="subH3">number of split players is : <span>{{numberSplitPlayerServer}}</span></p>
+<p class="subH3">note you can see the split players server data in console</p>
+<hr style="color: black;">
+<h3 class="subH2">--delete split players</h3>
+<button class="subH3" (click)="deleteSplitPlayers()"[disabled]="deleteSplitPlayersRadio == false">delete split players</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "deleteSplitPlayersRadio" name="deleteSplitPlayersRadio">
+   <mat-radio-button [value]="true">open delete split players button</mat-radio-button>
+   <mat-radio-button [value]="false">close delete split players button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageSplitPlayers}}</span></p>
+<hr>
+<h3 class="subH2">--get split players from database and put in server</h3>
+<button class="subH3" (click)="sPFromDatabaseToServer()" [disabled]="sPFromDatabaseToServerRadio == false">get split players from database and put in server</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "sPFromDatabaseToServerRadio" name="sPFromDatabaseToServerRadio">
+   <mat-radio-button [value]="true">open get split players from database and put in server button</mat-radio-button>
+   <mat-radio-button [value]="false">close get split players from database and put in server button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageAddSPToServer}}</span></p>
+<hr>
+<h2 class="mainH2">report hacker and winners pubg</h2>
+<h3 class="subH2">--get register hackers</h3>
+<button class="subH3" (click)="getRegisterHackers()">get register hackers</button><br>
+<p class="subH3">number of register hackers is : <span>{{numberRegisterHackers}}</span></p>
+<p class="subH3">note you can see the register hackers data in console</p>
+<hr style="color: black;">
+<h3 class="subH2">--get email hacker depend on idPubg</h3>
+<form class="subH3" #hackerEmail = "ngForm">
+   <label>hacker pubg id : </label> <input type="text" ngModel required pattern="^[0-9]+$" minlength="7"
+      maxlength="15" placeholder="ex: 7 to 15 number" name="hackerPubgId"><br>
+   <button (click)="getEmailHacker(hackerEmail)" [disabled]="hackerEmail.invalid">get email hackers</button><br>
+</form>
+<p class="subH3">the email is : <span>{{emailHacker}}</span></p>
+<hr style="color: black;">
+<h3 class="subH2">--add report hackers and winners</h3>
+<form class="subH3" #hackerData = "ngForm">
+   <label>hacker pubg id : </label> <input type="text" ngModel required pattern="^[0-9]+$" minlength="7"
+      maxlength="15" placeholder="ex: 7 to 15 number" name="hackerPubgId"><br>
+   <label>hacker email : </label> <input type="text" ngModel required pattern="^[a-z0-9]+@gmail.com$" placeholder="ex: test@gamil.com" name="hackerEmail"><br>
+   <p>length hacker array is : <span>{{hackersData.length}}</span></p>
+   <button (click)="pushHacker(hackerData)" [disabled]="hackerData.invalid">push hacker email and pubg id to array</button><br>
+   <button (click)="popHacker()" [disabled]="hackersData.length == 0 || popHackerRadio == false">delete last index hacker email and pubg id from array</button>
+   <mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "popHackerRadio" name="popHackerRadio">
+      <mat-radio-button [value]="true">open delete last index hacker email and pubg id from array button</mat-radio-button>
+      <mat-radio-button [value]="false">close delete last index hacker email and pubg id from array button</mat-radio-button>
+   </mat-radio-group>
+</form><br>
+<form class="subH3" #winnerPubgData = "ngForm">
+   <label>winner pubg id : </label> <input type="text" ngModel required pattern="^[0-9]+$" minlength="7"
+      maxlength="15" placeholder="ex: 7 to 15 number" name="winnerPubg"><br>
+   <p>length winner pubg id array is : <span>{{winnerPubgIdData.length}}</span></p><br>
+   <button (click)="pushWinnerPubg(winnerPubgData)" [disabled]="winnerPubgData.invalid">push winner pubg id to array</button><br>
+   <button (click)="popWinnerPubg()" [disabled]="winnerPubgIdData.length == 0 || popWinnerPubgRadio == false">delete last index winner pubg id from array</button>
+   <mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "popWinnerPubgRadio" name="popWinnerPubgRadio">
+      <mat-radio-button [value]="true">open delete last index winner pubg id from array button</mat-radio-button>
+      <mat-radio-button [value]="false">close delete last index winner pubg id from array button</mat-radio-button>
+   </mat-radio-group>
+</form><br>
+<form class="subH3" #HackersAndWinnersData = "ngForm">
+   <label>round number : </label> <input type="text" ngModel pattern="^[0-9]+$" placeholder="ex: 2" required name="round"><br><br><br>
+   <button (click)="addHackersAndWinners(HackersAndWinnersData)" [disabled]="HackersAndWinnersData.invalid || winnerPubgIdData.length == 0 || hackersData.length == 0 || addHackersAndWinnersRadio == false">add report hackers and winners to server and database</button><br>
+   <mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "addHackersAndWinnersRadio" name="addHackersAndWinnersRadio">
+      <mat-radio-button [value]="true">open add report hackers and winners to server and database button</mat-radio-button>
+      <mat-radio-button [value]="false">close add report hackers and winners to server and database button</mat-radio-button>
+   </mat-radio-group>
+</form>
+<p class="subH3">message : <span>{{messageHackersAndWinners}}</span></p>
+<hr>
+<h3 class="subH2">--get lasr round real hackers and winners from database</h3>
+<button class="subH3" (click)="getLastHackersWinnersRound()">get lasr round real hackers and winners</button><br>
+<p class="subH3">note you can see the lasr round real hackers and winners data in console</p>
+<hr style="color: black">
+<h3 class="subH2">--get report hackers from database</h3>
+<button class="subH3" (click)="getReportHackers()">get report hackers from database</button><br>
+<p class="subH3">number of report hackers is : <span>{{numberHackers}}</span></p>
+<p class="subH3">note you can see the report hackers data in console</p>
+<hr style="color: black;">
+<h3 class="subH2">--get report hackers from server when no connect</h3>
+<button class="subH3" (click)="getReportHackersNoConnect()">get report hackers from server</button><br>
+<p class="subH3">number of report hackers is : <span>{{numberHackersServer}}</span></p>
+<p class="subH3">note you can see the report hackers server data in console</p>
+<hr style="color: black;">
+<h3 class="subH2">--get winners pubg from database</h3>
+<button class="subH3" (click)="getWinnersPubg()">get winners pubg</button><br>
+<p class="subH3">number of winners pubg is : <span>{{numberWinnersPubg}}</span></p>
+<p class="subH3">note you can see the  winners pubg data in console</p>
+<hr style="color: black">
+<h3 class="subH2">--get winners pubg from server when no connect</h3>
+<button class="subH3" (click)="getWinnersPubgNoConnect()">get winners pubg from server</button><br>
+<p class="subH3">number of winners pubg is : <span>{{numberWinnersPubgServer}}</span></p>
+<p class="subH3">note you can see the winners pubg server data in console</p>
+<hr style="color: black;">
+<h3 class="subH2">--delete report hackers and winners</h3>
+<button class="subH3" (click)="deleteHackersAndWinners()" [disabled]="deleteHackersAndWinnersRadio == false">delete report hackers and winners</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "deleteHackersAndWinnersRadio" name="deleteHackersAndWinnersRadio">
+   <mat-radio-button [value]="true">open delete report hackers and winners button</mat-radio-button>
+   <mat-radio-button [value]="false">close delete report hackers and winners button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageDeleteHackersAndWinners}}</span></p>
+<hr style="color: black;">
+<h3 class="subH2">--get hackers and winners from database and put in server</h3>
+<button class="subH3" (click)="hAWFromDatabaseToServer()" [disabled]="hAWFromDatabaseToServerRadio == false">get hackers and winners from database and put in server</button><br>
+<mat-radio-group class="subH3" aria-label="Select an option" [(ngModel)] = "hAWFromDatabaseToServerRadio" name="hAWFromDatabaseToServerRadio">
+   <mat-radio-button [value]="true">open get hackers and winners from database and put in server button</mat-radio-button>
+   <mat-radio-button [value]="false">close get hackers and winners from database and put in server button</mat-radio-button>
+</mat-radio-group>
+<p class="subH3">message : <span>{{messageAddHAWToServer}}</span></p>
+<hr style="color: black;">

@@ -1,0 +1,50 @@
+/*mat-toolbar{
+    background-color:slateblue;
+}
+mat-toolbar span{
+    margin: auto;
+    color: white;
+}
+*/
+html,
+body,
+header,
+.carousel {
+  height: 60vh;
+}
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .carousel {
+	height: 100vh;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+  html,
+  body,
+  header,
+  .carousel {
+	height: 100vh;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+		.navbar:not(.top-nav-collapse) {
+			background: rgba(0, 0, 0, 0.5)!important;
+		}
+	}
+.view,body,html{height:100%}@media (max-width:740px){.full-page-intro{height:1000px}}.carousel{height:50%}.carousel .carousel-inner,.carousel .carousel-inner .active,.carousel .carousel-inner .carousel-item{height:100%}@media (max-width:776px){.carousel{height:100%}}.navbar{background-color:rgba(0,0,0,.5)}.page-footer,.top-nav-collapse{background-color:rgba(0,0,0,.5)}@media only screen and (max-width:768px){.navbar{background-color:rgba(0,0,0,.5)}}
+div ul li {
+  margin-left: 10px;
+}
+@media (max-width: 991px){
+  .maxopacity{
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .dropdown-menu{
+    margin-left: 16px;
+  }
+}

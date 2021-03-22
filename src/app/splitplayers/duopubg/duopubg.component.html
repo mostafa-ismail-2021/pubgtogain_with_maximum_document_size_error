@@ -1,0 +1,106 @@
+<img src="../../../assets/img/download.jpg" style="width: 100%;height: 100px;"/>
+<div class="spinner-container" *ngIf="getDataOnServer == true ; else elseBlockContainer">
+    <div>
+        <div class="up-spinner">loading will take a few seconds</div>
+        <div class="spinner">
+            <span class="spinner-ball"></span>
+        </div>
+    </div>
+</div>
+
+<ng-template #elseBlockContainer>
+    <div class="mainContainer">
+        <!--background-->
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <!--end background-->
+        <!--video-->
+            <div style="width: 100%;text-align: center;font-size: large;margin-bottom: 15px;padding-top: 15px;">{{upVideo}}</div>
+            <div style="width: 100%;text-align: center;margin-bottom: 15px;" *ngIf="upVideo == 'sorry There is no display date now'">note : no display date now may occure because the overloads of the server if you sure that there is display date now please visite our website after some minutes when overloads of server go down</div>
+            <div 
+                class="container" 
+                style="margin: auto ;" 
+                [ngClass]="{'stickyVideo': videoFinish == false, 'relativeVideo': videoFinish == true}"
+                fxLayout
+                fxLayout.xs="column"
+                fxLayoutAlign="center"
+                fxLayoutGap="10px"
+                fxLayoutGap.xs="0">
+                <div fxFlex="100%" id="duodateplayer" style="width: 100% ;background-color: black;">
+                </div>
+            </div>
+        <!--end video-->
+        <div #target>
+            <div style="font-size: medium;padding: 25px 0 5px;position: relative;" *ngIf=" videoFinish == false; else elseBlockNotes">click on show date button After Video finished</div>
+            <ng-template #elseBlockNotes>
+                <div style="margin-top: 10px;" [style.visibility]="detailDate =='your next round will start in' ? 'visible' : 'hidden'">
+                    <button mat-stroked-button style="outline: none;" data-toggle="collapse" data-target="#notes" aria-expanded="true">click to show some important notes before play</button>
+                </div>
+                <ol class="collapse numbered" id="notes" style="max-width: 630px; margin: 20px auto;text-align: left;">
+                    <li>the team winner in any group must be the last team survivor killed at least 8 players</li>
+                    <li>if you killed by hacker you will have another group to play in it</li>
+                    <li>a player in pubg with name playToGain and some numbers will send you a friend request before one hour of your date please accept the friend request</li>
+                    <li>to be sure that this is championShip room the player with name playToGain without any number must in spectate(مشاهدة) in room</li>
+                    <li>you can see report the hacker page to known how build valid video to report hacker</li>
+                </ol>
+            </ng-template>
+        </div>
+        <div class="containerPlayer">
+            <div class="profile-card" style="margin:10px auto;">
+                <div class="card-header">
+                    <img class="profile-image" src="../../assets/img/splitpubg.jpg" alt="profile image">
+                    <h3 style="margin: 10px auto;" [ngStyle]="{'color': detailDate == 'your next round will start in' ? 'green' : (detailDate =='The date will appear here' ? 'black' : 'red') }">{{detailDate}}</h3>
+                    <div style="text-align: left;width: 81%;margin: 10px auto;color: black;">
+                        <p>{{date}}</p>
+                        <p>{{timeEgypt}}</p>
+                        <p>{{timeGrinch}}</p>
+                    </div>
+                    <div class="divider">
+                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="contacts">
+                        <div class="form-group">
+                            <mat-form-field appearance="outline" style="width: 100%;">
+                                <mat-label>{{pubgIdText}}</mat-label>
+                                <input matInput
+                                    pattern="^[0-9]+$"
+                                    minlength="7"
+                                    maxlength="15"
+                                    type="text"
+                                    name="Idpubg"
+                                    required
+                                    ngModel 
+                                    #myId = "ngModel"
+                                    placeholder="Ex. Nine or ten numbers"
+                                    [disabled]="!dateAppearance">
+                                    <mat-error *ngIf="myId.invalid && myId.touched && myId.value.length != 0">
+                                        Please enter a valid Id pubg
+                                    </mat-error>
+                                    <mat-error *ngIf="myId.invalid && myId.touched && myId.value.length == 0">
+                                        Id pubg is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            <button mat-raised-button color="primary" [disabled]="myId.invalid || !videoFinish || !dateAppearance || numberClickShowDate > 6 || disbaleBottom" (click) = "showDate(myId , target)">show date</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+      
+<img src="../../../assets/img/download.jpg" style="width: 100%;height: 100px;"/>

@@ -1,0 +1,171 @@
+<img src="../../../assets/img/download.jpg" style="width: 100%;height: 100px;"/>
+
+<div class="spinner-container" *ngIf="getDataOnServer == true ; else elseBlockContainer">
+    <div>
+        <div class="up-spinner">loading will take a few seconds</div>
+        <div class="spinner">
+            <span class="spinner-ball"></span>
+        </div>
+    </div>
+</div>
+
+<ng-template #elseBlockContainer>
+    <div class="register" *ngIf="appearHackerAndWinners == false ; else elseBlock">
+        <div class="row" style="width: 100%;">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                <h3>Welcome</h3>
+                <p>Sorry for the hacker You will have another round</p>
+            </div>
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h2 class="register-heading">Register in squad report hacker</h2>
+                        
+                        <form class="row register-form" #personForm = "ngForm">
+                            <div style="width: 100%;text-align: center;font-size: large;margin-bottom: 15px;">{{upVideo}}</div>
+                            <div style="width: 100%;text-align: center;margin-bottom: 15px;" *ngIf="upVideo == 'sorry the register finished'">note : the register finished may occure because the overloads of the server if you sure that there is register now and register not finished please visite our website after some minutes when overloads of server go down</div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label [ngClass]="{'lable-text': gmailText == 'Please wait after completing your gmail account'}">{{gmailText}}</mat-label>
+                                        <input matInput 
+                                            required
+                                            email
+                                            type="email" 
+                                            name="Email"
+                                            ngModel 
+                                            pattern="^[a-zA-Z0-9.]+@gmail.com$"
+                                            #myEmail = "ngModel"
+                                            placeholder="Ex. test@gmail.com"
+                                            [disabled]="!register"
+                                            maxlength="50"
+                                            (keyup)="onKeyUpGmailAccount(myEmail)">
+                                            <mat-error *ngIf="myEmail.invalid && myEmail.touched && myEmail.value.length != 0 && gmailAccountType == true && errorServerGmailAccountType == false">
+                                                Please enter a valid email address
+                                            </mat-error>
+                                            <mat-error *ngIf="myEmail.invalid && myEmail.touched && myEmail.value.length == 0">
+                                                Email is <strong>required</strong>
+                                            </mat-error>
+                                            <mat-error *ngIf="myEmail.invalid && myEmail.touched && gmailAccountType==false && myEmail.value.length != 0 && errorServerGmailAccountType == false">
+                                                The email address already exists, please choose another email
+                                            </mat-error>
+                                            <mat-error *ngIf="myEmail.invalid && myEmail.touched && myEmail.value.length != 0 && errorServerGmailAccountType == true">
+                                                error because overloads of server. register after some minutes when overloads of server go down
+                                            </mat-error>
+                                    </mat-form-field>                                                    </div>
+                            
+                                    <div class="form-group">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label [ngClass]="{'lable-text': googleDriveText == 'Please wait after completing your google drive video sharing link'}">{{googleDriveText}}</mat-label>
+                                            <input matInput
+                                                pattern="^https://drive.google.com/+[a-zA-Z0-9/?=_-]+$"
+                                                type="text"
+                                                name="googleDrive"
+                                                required
+                                                ngModel 
+                                                #googleDrive = "ngModel"
+                                                placeholder="Ex. https://drive.google.com/test"
+                                                [disabled]="!register"
+                                                maxlength="100"
+                                                (keyup)="onKeyUpGoogleDrive(googleDrive)">
+                                                <mat-error *ngIf="googleDrive.invalid && googleDrive.touched && googleDrive.value.length != 0 && googleDriveType == true && errorServerGoogleDriveType == false">
+                                                    Please enter a valid google drive video sharing link
+                                                </mat-error>
+                                                <mat-error *ngIf="googleDrive.invalid && googleDrive.touched && googleDrive.value.length == 0">
+                                                    google drive video sharing link is <strong>required</strong>
+                                                </mat-error>
+                                                <mat-error *ngIf="googleDrive.invalid && googleDrive.touched && googleDriveType==false && googleDrive.value.length != 0 && errorServerGoogleDriveType == false">
+                                                    The google drive video sharing link already exists
+                                                </mat-error>
+                                                <mat-error *ngIf="googleDrive.invalid && googleDrive.touched && googleDrive.value.length != 0 && errorServergoogleDriveType == true">
+                                                    error because overloads of server. register after some minutes when overloads of server go down
+                                                </mat-error>
+                                        </mat-form-field>
+                                        <div style="margin-top: 10px;">
+                                            <a mat-stroked-button href="https://www.youtube.com/watch?v=jXYohu2olhA" target="_blank">how upload and get google drive video sharing link</a>
+                                        </div>
+                                        <div style="margin-top: 10px;">
+                                            <button mat-stroked-button style="outline: none;" data-toggle="collapse" data-target="#getYoutubeId" aria-expanded="true">how to bulid valid video report hacker</button>
+                                        </div>
+                                        <ol class="collapse numbered" id="getYoutubeId">
+                                            <li>Open any program to record the screen video</li>
+                                            <li>click on death replay(اعادة عرض الموت) after your player died</li>
+                                            <li>click on report to find out name of the player who killed you</li>
+                                            <li>upload video on google drive and get link </li>
+                                            <li>to know how upload video click on The above button</li>
+                                        </ol>
+                                    </div>
+                                <button mat-raised-button color="primary" class="btnRegister" (click) = "addReportHacker()" [disabled]="personForm.invalid || !register || !gmailAccountDisable || !googleDriveDisable">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <ng-template #elseBlock>
+        <div class="mainContainer">
+            <!--background-->
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <!--end background-->
+            <div style="width: 100%;text-align: center;font-size: large;margin-bottom: 15px;padding-top: 15px;">{{upVideo}}</div>
+            <div #target class="containerPlayer">
+                <div class="profile-card" style="margin:10px auto;">
+                    <div class="card-header">
+                        <img class="profile-image" src="../../assets/img/splitpubg.jpg" alt="profile image">
+                        <h3 style="margin: 10px auto;" [ngStyle]="{'color': message == 'Congratulations you are the winner in your group' ? 'green' : (message =='Your status will appear here' ? 'black' : 'red') }">{{message}}</h3>
+                        <div class="divider">
+                            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="contacts">
+                            <div class="form-group">
+                                <mat-form-field appearance="outline" style="width: 100%;">
+                                    <mat-label>{{pubgIdText}}</mat-label>
+                                    <input matInput
+                                        pattern="^[0-9]+$"
+                                        minlength="7"
+                                        maxlength="15"
+                                        type="text"
+                                        name="Idpubg"
+                                        required
+                                        ngModel 
+                                        #myId = "ngModel"
+                                        placeholder="Ex. Nine or ten numbers"
+                                        [disabled]="!appearHackerAndWinners">
+                                        <mat-error *ngIf="myId.invalid && myId.touched && myId.value.length != 0">
+                                            Please enter a valid Id pubg
+                                        </mat-error>
+                                        <mat-error *ngIf="myId.invalid && myId.touched && myId.value.length == 0">
+                                            Id pubg is <strong>required</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                <button mat-raised-button color="primary" [disabled]="myId.invalid || numberClickShowDate > 6 || disbaleBottom" (click) = "showPlayerState(myId , target)">show date</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </ng-template>
+</ng-template>
+
+<img src="../../../assets/img/download.jpg" style="width: 100%;height: 100px;"/>

@@ -1,0 +1,405 @@
+
+.example-full-width {
+    width: 100%;
+  }
+  
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+    mat-card form mat-form-field{
+      margin-top: 5px;
+    }
+  
+    mat-card-actions{
+      text-align: center;
+      margin-top: 20px;
+    }
+    mat-card-actions button{
+      width: 100px;
+    }
+    form > div{
+      margin-top: 10px;
+    }
+  
+    /*form design*/
+  
+    .register{
+      background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+     /* margin-top: 1%;
+      margin-bottom: 1%;*/
+      padding: 3%;
+      
+  }
+  .register-left{
+      text-align: center;
+      color: #fff;
+      margin-top: 4%;
+  }
+  .register-left input{
+      border: none;
+      border-radius: 1.5rem;
+      padding: 2%;
+      width: 60%;
+      background: #f8f9fa;
+      font-weight: bold;
+      color: #383d41;
+      margin-top: 30%;
+      margin-bottom: 3%;
+      cursor: pointer;
+  }
+  .register-right{
+      background: #f8f9fa;
+      border-top-left-radius: 10% 50%;
+      border-bottom-left-radius: 10% 50%;
+  }
+  .register-left img{
+      margin-top: 15%;
+      margin-bottom: 5%;
+      width: 25%;
+      -webkit-animation: mover 2s infinite  alternate;
+      animation: mover 1s infinite  alternate;
+  }
+  @-webkit-keyframes mover {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-20px); }
+  }
+  @keyframes mover {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-20px); }
+  }
+  .register-left p{
+      font-weight: lighter;
+      padding: 12%;
+      margin-top: -9%;
+  }
+  .register .register-form{
+      padding: 10%;
+      margin-top: 10%;
+  }
+  .btnRegister{
+      float: right;
+      margin-top: 10%;
+      border: none;
+      border-radius: 1.5rem;
+      padding: 2%;
+      background: #0062cc;
+      color: #fff;
+      font-weight: 600;
+      width: 50%;
+      cursor: pointer;
+  }
+  .register .nav-tabs{
+      margin-top: 3%;
+      border: none;
+      background: #0062cc;
+      border-radius: 1.5rem;
+      width: 28%;
+      float: right;
+  }
+  .register .nav-tabs .nav-link{
+      padding: 2%;
+      height: 34px;
+      font-weight: 600;
+      color: #fff;
+      border-top-right-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
+  }
+  .register .nav-tabs .nav-link:hover{
+      border: none;
+  }
+  .register .nav-tabs .nav-link.active{
+      width: 100px;
+      color: #0062cc;
+      border: 2px solid #0062cc;
+      border-top-left-radius: 1.5rem;
+      border-bottom-left-radius: 1.5rem;
+  }
+  .register-heading{
+      text-align: center;
+      margin-top: 8%;
+      margin-bottom: -15%;
+      color: #495057;
+  }
+
+  /*order list*/
+  ol {
+    list-style: none;
+    margin-top: 10px;
+    padding: 0;
+  }
+  
+  li {
+    margin: 0;
+    padding: 0;
+  }
+  ol.numbered {
+    border-left: 3px solid #b3b3b3;
+    counter-reset: numbered-list;
+    margin-left: 20px;
+    position: relative;
+  }
+  ol.numbered li {
+    font-size: 16px;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    padding-left: 30px;
+  }
+  ol.numbered li:last-child {
+    border-left: 3px solid white;
+    margin-left: -3px;
+  }
+  ol.numbered li:before {
+    background-color: #b3b3b3;
+    border: 3px solid white;
+    border-radius: 50%;
+    color: white;
+    content: counter(numbered-list,decimal);
+    counter-increment: numbered-list;
+    display: block;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    margin-top: -0.5em;
+    line-height: 25px;
+    position: absolute;
+    left: -19.5px;
+    text-align: center;
+  }
+  /*card */
+  .profile-card {
+    display: inline-block;
+    position: relative;
+    background-color: #FFF;
+    max-width: 300px;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    
+  }
+  .profile-card:hover {
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+  }
+  .profile-card .card-header {
+    position: relative;
+    padding: 2rem;
+    color: #FFF;
+    background: linear-gradient(135deg, #F4E2D8, #BA5370);
+    height: 320px;
+  }
+  .profile-card .card-header .profile-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #FFF;
+  }
+  .profile-card .card-header .profile-name {
+    margin-top: .5rem;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .profile-card .card-header .profile-role {
+    font-size: 1.05rem;
+    color: #DDD;
+  }
+  .profile-card .card-header .profile-location {
+    margin-top: .5rem;
+    margin-bottom: 2rem;
+    font-size: 1.25rem;
+  }
+  .profile-card .card-header .divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+  }
+  .profile-card .card-header .divider svg {
+    position: relative;
+    display: block;
+    width: calc(150% + 1.5px);
+    height: 50px;
+  }
+  .profile-card .card-header .divider svg path {
+    fill: #FFFFFF;
+  }
+  .profile-card .card-body {
+    padding: 2rem;
+  }
+  .profile-card .card-body .title {
+    color: #666;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .profile-card .card-body .contact-list {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .profile-card .card-body .contact-list .contact-item {
+    width: 50px;
+    height: 50px;
+    padding: .75rem;
+    border-radius: .5rem;
+  }
+  .profile-card .card-body .contact-list .contact-item.facebook {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    box-shadow: 0px 5px 10px rgba(0, 198, 255, 0.5);
+  }
+  .profile-card .card-body .contact-list .contact-item.twitter {
+    background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+    box-shadow: 0px 5px 10px rgba(0, 210, 255, 0.5);
+  }
+  .profile-card .card-body .contact-list .contact-item.instagram {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    box-shadow: 0px 5px 10px rgba(253, 29, 29, 0.5);
+  }
+  .profile-card .card-body .contact-list .contact-item.dribbble {
+    background: linear-gradient(135deg, #da4453, #89216b);
+    box-shadow: 0px 5px 10px rgba(218, 68, 83, 0.5);
+  }
+  
+  .icon {
+    position: relative;
+    top: .25rem;
+    width: 1.25em;
+    height: 1.25em;
+  }
+  .icon.white path, .icon.white polygon, .icon.white rect {
+    fill: #FFF;
+  }
+  
+  .contact-icon {
+    width: 100%;
+    height: 100%;
+  }
+  .contact-icon path {
+    fill: #FFF;
+  }
+  /*background*/
+  .mainContainer {
+    background: -webkit-linear-gradient(to right, #a7bfe8, #6190e8);
+    background: linear-gradient(to right, #a7bfe8, #6190e8);
+    text-align: center;
+    position: relative;
+  }
+  
+  .circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  
+    
+  }
+  
+  .circles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: #a8c0ff;
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+  }
+  
+  .circles li:nth-child(1) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+  }
+  
+  .circles li:nth-child(2) {
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+  }
+  
+  .circles li:nth-child(3) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+  }
+  
+  .circles li:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+  }
+  
+  .circles li:nth-child(5) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+  }
+  
+  .circles li:nth-child(6) {
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+  }
+  
+  .circles li:nth-child(7) {
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+  }
+  
+  .circles li:nth-child(8) {
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+  }
+  
+  .circles li:nth-child(9) {
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+  }
+  
+  .circles li:nth-child(10) {
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+  }
+  
+  @keyframes animate {
+    0% {
+      transform: rotate(0deg);
+      opacity: 1;
+      border-radius: 0;
+      top: 110%;
+  
+    }
+  
+    100% {
+      
+      transform: rotate(720deg);
+      opacity: .3;
+      border-radius: 50%;
+      top:-30%;
+    }
+  }
